@@ -1,0 +1,18 @@
+name: pip install test
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: print versions
+      run: |
+        python --version
+        pip --version
+    - name: local install
+      run: pip install .
+    - name: local upgrade
+      run: pip install --upgrade .
+    - name: local uninstall
+      run: pip uninstall -y eVee

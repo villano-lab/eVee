@@ -1,0 +1,15 @@
+name: create wheel artifact
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: create artifact
+      run: python setup.py bdist_wheel
+    - name: save artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: wheel-module
+        path: dist/eVee-*-py3-none-any.whl
